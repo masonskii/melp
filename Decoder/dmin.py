@@ -18,7 +18,7 @@ def upload_date(*args) -> [int, ndarray]:
 def get_T(T, jt):
     try:
         T = T * (1 + jt * 0.5 * (np.random.random() - 0.5))
-        T = np.int32(np.around(T))
+        T = int(np.around(T))
         if T > 160:
             T = 160
         elif T < 20:
@@ -67,6 +67,6 @@ def d_min(fm, T, jt, vp, state_pul, state_noi):
         else:
             state_pul = ep[T - 30:T]
             state_noi = en[T - 30:T]
-        return np.conj(np.transpose(e)), state_pul, state_noi, T
+        return e, state_pul, state_noi, T
     except Exception as e:
         raise e

@@ -16,9 +16,8 @@ def sound_wav(audio, is_play=False):
         return
 
 
-def show_plot(*args):
-    for i in args:
-        plt.plot(i[250:])
+def show_plot(signal):
+    plt.plot(signal*2000)
     plt.xlabel('Время')
     plt.title('График сравнения сигналов до и после обработки')
 

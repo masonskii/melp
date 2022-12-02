@@ -42,7 +42,7 @@ def decode(C) -> tuple[list[float], list[float]]:
     vg = []
     vsig = []
     vh = []
-    for i in np.arange(0, FRN-1):
+    for i in np.arange(0, FRN):
         G1_1 = []
         G2_1 = []
         G1_2 = []
@@ -53,12 +53,12 @@ def decode(C) -> tuple[list[float], list[float]]:
         G2_1.append(G2)
         Gno = noise_est(G1, Gno)
         G1 = noise_sup(G1, Gno)
-        G1_2.append(G1)
-        G2_2.append(G2)
         Gno = noise_est(G2, Gno)
         G2 = noise_sup(G2, Gno)
+        G1_2.append(G1)
+        G2_2.append(G2)
         if C[i].pitch != 0:
-            fm2 = np.array(FMCQ_CODEBOOK[C[i].QFM, :])
+            fm2 = np.array(FMCQ_CODEBOOK[C[i].QFM - 1, :])
             jt2 = C[i].jt
             vp2 = np.array([1, C[i].vp[0], C[i].vp[1], C[i].vp[2], C[i].vp[3]], dtype=float)
             p2 = C[i].pitch

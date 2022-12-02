@@ -1,6 +1,7 @@
 import numpy as np
 from Encoder.stage import stage1 as st1, stage2 as st2
 
+
 def d_lsf(codeword):
     """
     Определение вектора квантованных ЛСЧ

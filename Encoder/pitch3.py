@@ -17,7 +17,7 @@ def pitch3(sig_in, resid, p2, pavg):
         from Encoder.fpr import fpr
         from Encoder.pitch2 import pitch2
 
-        p2 = int(np.around(p2))  # округление дробного значения ОТ
+        p2 = np.around(p2)  # округление дробного значения ОТ
         p3, rp3 = pitch2(resid, p2)  # вычисление дробного значения ОТ по сигналу остатка предсказания
 
         if rp3 >= 0.6:

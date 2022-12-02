@@ -29,10 +29,10 @@ def melp_lsf21pc(lsfs):
                 P = np.matmul(temp, w0)
 
             Q[i, :] = P
-            tmp1 = np.append(Q[0, :], 0)
-            tmp3 = np.append(0, Q[0, :])
-            tmp2 = np.append(Q[1, :], 0)
-            tmp4 = np.append(0, Q[1, :])
+        tmp1 = np.append(Q[0, :], 0)
+        tmp3 = np.append(0, Q[0, :])
+        tmp2 = np.append(Q[1, :], 0)
+        tmp4 = np.append(0, Q[1, :])
         f = (tmp1 + tmp2 + tmp3 - tmp4) / 2
         f = f[1:11]
         return f

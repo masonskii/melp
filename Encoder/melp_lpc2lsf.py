@@ -24,7 +24,6 @@ def melp_lpc2lsf(a):
         b[0, 0] = 1
         b[1, 1] = 1
         for i in np.arange(4):
-            # i = 0 : [2, (0, 2)] = -1,2; i = 1:[3,(1,3)] = -3,4; i=2: [4, (0,2,4)] = 1, -8 8; i=3: [5, (1,3,6) = 5, -20, 16
             tmp1 = b[i + 1, 0:i + 1 + 1]
             tmp1 = np.append([0], tmp1)
             tmp2 = np.append(b[i, 0:i + 1], [0, 0])
@@ -42,7 +41,7 @@ def melp_lpc2lsf(a):
                 y2 = np.matmul(np.power(cosx, np.arange(1, 6, 1)), np.reshape(P[ii, 1:6], (-1, 1))) + P[ii, 0]
                 if y2 == 0:
                     f1.append(i * k)
-                    i = i + 1
+                    i += 1
                     cosx = np.cos(i * k)
                     y2 = np.matmul(np.power(cosx, np.arange(1, 6, 1)), np.reshape(P[ii, 1:6], (-1, 1))) + P[ii, 0]
                 elif y1 * y2 < 0:
@@ -51,7 +50,7 @@ def melp_lpc2lsf(a):
                     for _ in np.arange(4):
                         x = (x1 + x2) / 2
                         cosx = np.cos(x)
-                        temp = ((np.matmul(np.power(cosx, np.arange(1, 6)), np.reshape(P[ii, 1:6], (-1, 1)))) + P[ii, 0])
+                        temp = np.matmul(np.power(cosx, np.arange(1, 6)), np.reshape(P[ii, 1:6], (-1, 1))) + P[ii, 0]
                         if temp == 0:
                             f1.append(x)
                             break
@@ -62,9 +61,9 @@ def melp_lpc2lsf(a):
                             y2 = temp
 
                     if temp != 0:
-                        f1.append(x1 + x2 / 2)
+                        f1.append((x1 + x2) / 2)
                 y1 = y2
-                i = i + 1
+                i += 1
         f = np.zeros(10)
         m = len(f1)
         if m == 11:

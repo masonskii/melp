@@ -156,8 +156,8 @@ def encoder() -> tuple[list[C], ndarray]:
         temp_s = np.zeros(6)
         fltd_resid, temp_s = lfilter(butt_1000num, butt_1000den, e_resid, zi=temp_s)
         temp_s = np.reshape(temp_s, (-1, 1))
-        fltd_resid = np.append((0, 0, 0, 0, 0), fltd_resid)
-        fltd_resid = np.append(fltd_resid, (0, 0, 0, 0, 0))
+        fltd_resid = np.append([0, 0, 0, 0, 0], fltd_resid)
+        fltd_resid = np.append(fltd_resid, [0, 0, 0, 0, 0])
         p3, r3 = pitch3(sig_in, fltd_resid, p2, pavg)
         """Вычисление усиления """
         G = melp_gain(sig_in, vp[0], p2)
